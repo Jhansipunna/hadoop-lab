@@ -6,3 +6,4 @@ if(cnum==DataObject.NOISE)
 thrownewException();
 else
 returncnum;
+}
