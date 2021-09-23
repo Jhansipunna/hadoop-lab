@@ -1,0 +1,592 @@
+[cloudera@localhost hadoop]$ hadoopfs -ls
+bash: hadoopfs: command not found
+[cloudera@localhost hadoop]$ hadoopfs
+bash: hadoopfs: command not found
+[cloudera@localhost hadoop]$ hadoopfs–ls 
+bash: hadoopfs–ls: command not found
+[cloudera@localhost hadoop]$ hadoop fs -ls
+Found 24 items
+drwx------   - cloudera cloudera          0 2019-07-25 20:43 .Trash
+drwx------   - cloudera cloudera          0 2019-09-25 01:37 .staging
+drwxr-xr-x   - cloudera cloudera          0 2020-11-25 02:19 Biadmin
+drwxr-xr-x   - cloudera cloudera          0 2015-08-08 02:00 Input
+drwxr-xr-x   - cloudera cloudera          0 2019-09-24 02:09 Matrix
+drwxr-xr-x   - cloudera cloudera          0 2015-08-08 02:04 OutPut
+drwxr-xr-x   - cloudera cloudera          0 2015-08-08 02:11 OutPut1
+-rw-r--r--   3 cloudera cloudera          4 2019-11-18 00:44 file1
+drwxr-xr-x   - cloudera cloudera          0 2017-11-30 21:21 file3.txt
+drwxr-xr-x   - cloudera cloudera          0 2020-11-24 22:10 input
+drwxr-xr-x   - cloudera cloudera          0 2019-11-18 00:54 kavya
+drwxr-xr-x   - cloudera cloudera          0 2020-11-24 21:16 myTestDir
+drwxr-xr-x   - cloudera cloudera          0 2020-11-25 02:15 myTestDirc
+-rw-r--r--   3 cloudera cloudera          0 2017-11-30 21:26 newfile.txt
+drwxr-xr-x   - cloudera cloudera          0 2019-09-24 01:39 operation
+drwxr-xr-x   - cloudera cloudera          0 2020-11-24 22:49 output
+drwxr-xr-x   - cloudera cloudera          0 2019-09-25 01:37 result
+-rw-r--r--   3 cloudera cloudera         98 2016-07-15 03:20 sample.java
+-rw-r--r--   3 cloudera cloudera          6 2019-11-18 00:45 sample.txt
+drwxrwxrwx   - cloudera cloudera          0 2017-12-14 20:40 sravanthi
+drwxr-xr-x   - cloudera cloudera          0 2019-11-18 00:54 sri
+drwxr-xr-x   - cloudera cloudera          0 2019-09-11 20:57 uday
+drwxr-xr-x   - cloudera cloudera          0 2019-09-18 00:02 wordcount
+drwxr-xr-x   - cloudera cloudera          0 2019-11-17 21:31 yv
+[cloudera@localhost hadoop]$ hadoop fs -ls /user/biadmin
+ls: `/user/biadmin': No such file or directory
+[cloudera@localhost hadoop]$ hadoop fs -ls /user
+Found 5 items
+drwxr-xr-x   - cloudera cloudera          0 2020-11-25 02:19 /user/cloudera
+drwxr-xr-x   - mapred   yarn              0 2013-10-07 08:18 /user/history
+drwxrwxrwx   - hive     hive              0 2013-10-07 08:20 /user/hive
+drwxrwxr-x   - oozie    oozie             0 2013-10-07 08:19 /user/oozie
+drwxrwxr-x   - sqoop2   sqoop             0 2013-10-07 08:20 /user/sqoop2
+[cloudera@localhost hadoop]$ hadoop fs -mkdir /user/biadmin/myTestDir2 
+mkdir: Permission denied: user=cloudera, access=WRITE, inode="/user":hdfs:supergroup:drwxr-xr-x
+[cloudera@localhost hadoop]$ hadoop fs -ls /user/biadmin | grep Test
+ls: `/user/biadmin': No such file or directory
+[cloudera@localhost hadoop]$ hadoopfs -put /home/biadmin/bootcamp/input/lab01_HadoopCore/HDFS/README
+bash: hadoopfs: command not found
+[cloudera@localhost hadoop]$ 
+[cloudera@localhost hadoop]$ README
+bash: README: command not found
+[cloudera@localhost hadoop]$ hadoop fs -cat README
+cat: `README': No such file or directory
+[cloudera@localhost hadoop]$ cd /home/biadmin/bootcamp/input/lab01_HadoopCore/HDFS/
+bash: cd: /home/biadmin/bootcamp/input/lab01_HadoopCore/HDFS/: No such file or directory
+[cloudera@localhost hadoop]$ hadoop fs -help-
+-help-: Unknown command
+[cloudera@localhost hadoop]$ hadoop fs -help
+Usage: hadoop fs [generic options]
+	[-cat [-ignoreCrc] <src> ...]
+	[-chgrp [-R] GROUP PATH...]
+	[-chmod [-R] <MODE[,MODE]... | OCTALMODE> PATH...]
+	[-chown [-R] [OWNER][:[GROUP]] PATH...]
+	[-copyFromLocal <localsrc> ... <dst>]
+	[-copyToLocal [-ignoreCrc] [-crc] <src> ... <localdst>]
+	[-count [-q] <path> ...]
+	[-cp <src> ... <dst>]
+	[-df [-h] [<path> ...]]
+	[-du [-s] [-h] <path> ...]
+	[-expunge]
+	[-get [-ignoreCrc] [-crc] <src> ... <localdst>]
+	[-getmerge [-nl] <src> <localdst>]
+	[-help [cmd ...]]
+	[-ls [-d] [-h] [-R] [<path> ...]]
+	[-mkdir [-p] <path> ...]
+	[-moveFromLocal <localsrc> ... <dst>]
+	[-moveToLocal <src> <localdst>]
+	[-mv <src> ... <dst>]
+	[-put <localsrc> ... <dst>]
+	[-rm [-f] [-r|-R] [-skipTrash] <src> ...]
+	[-rmdir [--ignore-fail-on-non-empty] <dir> ...]
+	[-setrep [-R] [-w] <rep> <path/file> ...]
+	[-stat [format] <path> ...]
+	[-tail [-f] <file>]
+	[-test -[ezd] <path>]
+	[-text [-ignoreCrc] <src> ...]
+	[-touchz <path> ...]
+	[-usage [cmd ...]]
+
+-cat [-ignoreCrc] <src> ...:	Fetch all files that match the file pattern <src> 
+		and display their content on stdout.
+
+-chgrp [-R] GROUP PATH...:	This is equivalent to -chown ... :GROUP ...
+
+-chmod [-R] <MODE[,MODE]... | OCTALMODE> PATH...:	Changes permissions of a file.
+			This works similar to shell's chmod with a few exceptions.
+		
+		-R	modifies the files recursively. This is the only option
+			currently supported.
+		
+		MODE	Mode is same as mode used for chmod shell command.
+			Only letters recognized are 'rwxXt'. E.g. +t,a+r,g-w,+rwx,o=r
+		
+		OCTALMODE Mode specifed in 3 or 4 digits. If 4 digits, the first may
+		be 1 or 0 to turn the sticky bit on or off, respectively.  Unlike shell command, it is not possible to specify only part of the mode
+			E.g. 754 is same as u=rwx,g=rx,o=r
+		
+			If none of 'augo' is specified, 'a' is assumed and unlike
+			shell command, no umask is applied.
+
+-chown [-R] [OWNER][:[GROUP]] PATH...:	Changes owner and group of a file.
+			This is similar to shell's chown with a few exceptions.
+		
+			-R	modifies the files recursively. This is the only option
+			currently supported.
+		
+			If only owner or group is specified then only owner or
+			group is modified.
+		
+			The owner and group names may only cosists of digits, alphabet,
+			and any of '-_.@/' i.e. [-_.@/a-zA-Z0-9]. The names are case
+			sensitive.
+		
+			WARNING: Avoid using '.' to separate user name and group though
+			Linux allows it. If user names have dots in them and you are
+			using local file system, you might see surprising results since
+			shell command 'chown' is used for local files.
+
+-copyFromLocal <localsrc> ... <dst>:	Identical to the -put command.
+
+-copyToLocal [-ignoreCrc] [-crc] <src> ... <localdst>:	Identical to the -get command.
+
+-count [-q] <path> ...:	Count the number of directories, files and bytes under the paths
+		that match the specified file pattern.  The output columns are:
+		DIR_COUNT FILE_COUNT CONTENT_SIZE FILE_NAME or
+		QUOTA REMAINING_QUATA SPACE_QUOTA REMAINING_SPACE_QUOTA 
+		      DIR_COUNT FILE_COUNT CONTENT_SIZE FILE_NAME
+
+-cp <src> ... <dst>:	Copy files that match the file pattern <src> to a
+		destination.  When copying multiple files, the destination
+		must be a directory.
+
+-df [-h] [<path> ...]:	Shows the capacity, free and used space of the filesystem.
+		If the filesystem has multiple partitions, and no path to a
+		particular partition is specified, then the status of the root
+		partitions will be shown.
+		  -h   Formats the sizes of files in a human-readable fashion
+		       rather than a number of bytes.
+
+-du [-s] [-h] <path> ...:	Show the amount of space, in bytes, used by the files that
+		match the specified file pattern. The following flags are optional:
+		  -s   Rather than showing the size of each individual file that
+		       matches the pattern, shows the total (summary) size.
+		  -h   Formats the sizes of files in a human-readable fashion
+		       rather than a number of bytes.
+		
+		Note that, even without the -s option, this only shows size summaries
+		one level deep into a directory.
+		The output is in the form 
+			size	name(full path)
+
+-expunge:	Empty the Trash
+
+-get [-ignoreCrc] [-crc] <src> ... <localdst>:	Copy files that match the file pattern <src>
+		to the local name.  <src> is kept.  When copying multiple,
+		files, the destination must be a directory.
+
+-getmerge [-nl] <src> <localdst>:	Get all the files in the directories that
+		match the source file pattern and merge and sort them to only
+		one file on local fs. <src> is kept.
+		  -nl   Add a newline character at the end of each file.
+
+-help [cmd ...]:	Displays help for given command or all commands if none
+		is specified.
+
+-ls [-d] [-h] [-R] [<path> ...]:	List the contents that match the specified file pattern. If
+		path is not specified, the contents of /user/<currentUser>
+		will be listed. Directory entries are of the form 
+			dirName (full path) <dir> 
+		and file entries are of the form 
+			fileName(full path) <r n> size 
+		where n is the number of replicas specified for the file 
+		and size is the size of the file, in bytes.
+		  -d  Directories are listed as plain files.
+		  -h  Formats the sizes of files in a human-readable fashion
+		      rather than a number of bytes.
+		  -R  Recursively list the contents of directories.
+
+-mkdir [-p] <path> ...:	Create a directory in specified location.
+		  -p  Do not fail if the directory already exists
+
+-moveFromLocal <localsrc> ... <dst>:	Same as -put, except that the source is
+		deleted after it's copied.
+
+-moveToLocal <src> <localdst>:	Not implemented yet
+
+-mv <src> ... <dst>:	Move files that match the specified file pattern <src>
+		to a destination <dst>.  When moving multiple files, the
+		destination must be a directory.
+
+-put <localsrc> ... <dst>:	Copy files from the local file system
+		into fs.
+
+-rm [-f] [-r|-R] [-skipTrash] <src> ...:	Delete all files that match the specified file pattern.
+		Equivalent to the Unix command "rm <src>"
+		-skipTrash option bypasses trash, if enabled, and immediately
+		deletes <src>
+		  -f     If the file does not exist, do not display a diagnostic
+		         message or modify the exit status to reflect an error.
+		  -[rR]  Recursively deletes directories
+
+-rmdir [--ignore-fail-on-non-empty] <dir> ...:	Removes the directory entry specified by each directory argument,
+		provided it is empty.
+
+-setrep [-R] [-w] <rep> <path/file> ...:	Set the replication level of a file.
+		The -R flag requests a recursive change of replication level
+		for an entire tree.
+
+-stat [format] <path> ...:	Print statistics about the file/directory at <path>
+		in the specified format. Format accepts filesize in blocks (%b), group name of owner(%g),
+		filename (%n), block size (%o), replication (%r), user name of owner(%u), modification date (%y, %Y)
+
+-tail [-f] <file>:	Show the last 1KB of the file.
+				The -f option shows appended data as the file grows.
+
+-test -[ezd] <path>:	If file exists, has zero length, is a directory
+		then return 0, else return 1.
+
+-text [-ignoreCrc] <src> ...:	Takes a source file and outputs the file in text format.
+		The allowed formats are zip and TextRecordInputStream.
+
+-touchz <path> ...:	Creates a file of zero length
+		at <path> with current time as the timestamp of that <path>.
+		An error is returned if the file exists with non-zero length
+
+-usage [cmd ...]:	Displays the usage for given command or all commands if none
+		is specified.
+
+Generic options supported are
+-conf <configuration file>     specify an application configuration file
+-D <property=value>            use value for given property
+-fs <local|namenode:port>      specify a namenode
+-jt <local|jobtracker:port>    specify a job tracker
+-files <comma separated list of files>    specify comma separated files to be copied to the map reduce cluster
+-libjars <comma separated list of jars>    specify comma separated jar files to include in the classpath.
+-archives <comma separated list of archives>    specify comma separated archives to be unarchived on the compute machines.
+
+The general command line syntax is
+bin/hadoop command [genericOptions] [commandOptions]
+
+[cloudera@localhost hadoop]$ hadoop fs -help dus
+-dus:	(DEPRECATED) Same as 'du -s'
+[cloudera@localhost hadoop]$ ls
+FileCopy.java  FileSys.java  URLCat.java
+[cloudera@localhost hadoop]$ hadoop fs -usage ls
+Usage: hadoop fs [generic options] -ls [-d] [-h] [-R] [<path> ...]
+[cloudera@localhost hadoop]$ hadoop fs -ls
+Found 24 items
+drwx------   - cloudera cloudera          0 2019-07-25 20:43 .Trash
+drwx------   - cloudera cloudera          0 2019-09-25 01:37 .staging
+drwxr-xr-x   - cloudera cloudera          0 2020-11-25 02:19 Biadmin
+drwxr-xr-x   - cloudera cloudera          0 2015-08-08 02:00 Input
+drwxr-xr-x   - cloudera cloudera          0 2019-09-24 02:09 Matrix
+drwxr-xr-x   - cloudera cloudera          0 2015-08-08 02:04 OutPut
+drwxr-xr-x   - cloudera cloudera          0 2015-08-08 02:11 OutPut1
+-rw-r--r--   3 cloudera cloudera          4 2019-11-18 00:44 file1
+drwxr-xr-x   - cloudera cloudera          0 2017-11-30 21:21 file3.txt
+drwxr-xr-x   - cloudera cloudera          0 2020-11-24 22:10 input
+drwxr-xr-x   - cloudera cloudera          0 2019-11-18 00:54 kavya
+drwxr-xr-x   - cloudera cloudera          0 2020-11-24 21:16 myTestDir
+drwxr-xr-x   - cloudera cloudera          0 2020-11-25 02:15 myTestDirc
+-rw-r--r--   3 cloudera cloudera          0 2017-11-30 21:26 newfile.txt
+drwxr-xr-x   - cloudera cloudera          0 2019-09-24 01:39 operation
+drwxr-xr-x   - cloudera cloudera          0 2020-11-24 22:49 output
+drwxr-xr-x   - cloudera cloudera          0 2019-09-25 01:37 result
+-rw-r--r--   3 cloudera cloudera         98 2016-07-15 03:20 sample.java
+-rw-r--r--   3 cloudera cloudera          6 2019-11-18 00:45 sample.txt
+drwxrwxrwx   - cloudera cloudera          0 2017-12-14 20:40 sravanthi
+drwxr-xr-x   - cloudera cloudera          0 2019-11-18 00:54 sri
+drwxr-xr-x   - cloudera cloudera          0 2019-09-11 20:57 uday
+drwxr-xr-x   - cloudera cloudera          0 2019-09-18 00:02 wordcount
+drwxr-xr-x   - cloudera cloudera          0 2019-11-17 21:31 yv
+[cloudera@localhost hadoop]$ hadoop fs Matrix
+Matrix: Unknown command
+[cloudera@localhost hadoop]$ hadoop fs -ls/
+-ls/: Unknown command
+[cloudera@localhost hadoop]$ hadoop fs -ls/
+-ls/: Unknown command
+[cloudera@localhost hadoop]$ hadoop fs -ls /
+Found 5 items
+drwxr-xr-x   - hbase hbase               0 2013-10-07 08:19 /hbase
+drwxr-xr-x   - solr  solr                0 2013-10-07 08:18 /solr
+drwxrwxrwx   - hdfs  supergroup          0 2016-07-15 03:26 /tmp
+drwxr-xr-x   - hdfs  supergroup          0 2013-10-07 08:20 /user
+drwxr-xr-x   - hdfs  supergroup          0 2013-10-07 08:18 /var
+[cloudera@localhost hadoop]$  hadoop fs –mkdir /user/cloudera/dezyre1
+–mkdir: Unknown command
+[cloudera@localhost hadoop]$ hadoop fs -mkdir / user/cloudera/denzyrel
+mkdir: `/': File exists
+[cloudera@localhost hadoop]$ hadoop fs -ls-R/user/cloudera
+-ls-R/user/cloudera: Unknown command
+[cloudera@localhost hadoop]$ hadoop fs -touchz
+-touchz: Not enough arguments: expected 1 but got 0
+Usage: hadoop fs [generic options] -touchz <path> ...
+[cloudera@localhost hadoop]$ $ hadoop fs –get 
+bash: $: command not found
+[cloudera@localhost hadoop]$ hadoop fs -get
+-get: Not enough arguments: expected 1 but got 0
+Usage: hadoop fs [generic options] -get [-ignoreCrc] [-crc] <src> ... <localdst>
+[cloudera@localhost hadoop]$ hadoop fs -copytolocxal
+-copytolocxal: Unknown command
+[cloudera@localhost hadoop]$ 
+[cloudera@localhost hadoop]$ hadoop fs - copytolocal
+copytolocal: Unknown command
+[cloudera@localhost hadoop]$ hadoop fs -tail -f
+-tail: Not enough arguments: expected 1 but got 0
+Usage: hadoop fs [generic options] -tail [-f] <file>
+[cloudera@localhost hadoop]$ hadoop fs -tail
+-tail: Not enough arguments: expected 1 but got 0
+Usage: hadoop fs [generic options] -tail [-f] <file>
+[cloudera@localhost hadoop]$ hadoop fs -move
+-move: Unknown command
+[cloudera@localhost hadoop]$ $ hadoop fs –cp /user/cloudera/dezyre/war_and_peace /user/cloudera/dezyre1/
+bash: $: command not found
+[cloudera@localhost hadoop]$ hadoop fs -cat
+-cat: Not enough arguments: expected 1 but got 0
+Usage: hadoop fs [generic options] -cat [-ignoreCrc] <src> ...
+[cloudera@localhost hadoop]$ hadoop fs -df
+'Filesystem                                Size      Used    Available  Use%
+hdfs://localhost.localdomain:8020  28799380685  88518656  25281695744    0%
+[cloudera@localhost hadoop]$ 
+[cloudera@localhost hadoop]$ hdfs dfs -text /user/dataflair/dir1/sample 
+text: `/user/dataflair/dir1/sample': No such file or directory
+[cloudera@localhost hadoop]$ hdfs dfs stat path
+stat: Unknown command
+Did you mean -stat?  This command begins with a dash.
+[cloudera@localhost hadoop]$ -
+bash: -: command not found
+[cloudera@localhost hadoop]$ hdfs dfs -stat path
+stat: `path': No such file or directory
+[cloudera@localhost hadoop]$ hdfs dfs -count/user/datafliar
+-count/user/datafliar: Unknown command
+[cloudera@localhost hadoop]$ 
+[cloudera@localhost hadoop]$ hadoop fs -lsr /user
+lsr: DEPRECATED: Please use 'ls -R' instead.
+drwxr-xr-x   - cloudera cloudera          0 2021-09-05 22:38 /user/cloudera
+drwx------   - cloudera cloudera          0 2019-07-25 20:43 /user/cloudera/.Trash
+drwx------   - cloudera cloudera          0 2019-07-25 20:40 /user/cloudera/.Trash/190725204244
+drwx------   - cloudera cloudera          0 2019-07-25 20:40 /user/cloudera/.Trash/190725204244/user
+drwx------   - cloudera cloudera          0 2019-07-25 20:40 /user/cloudera/.Trash/190725204244/user/cloudera
+-rw-r--r--   3 cloudera cloudera         20 2019-07-25 20:35 /user/cloudera/.Trash/190725204244/user/cloudera/f2
+drwx------   - cloudera cloudera          0 2019-07-25 20:43 /user/cloudera/.Trash/Current
+drwx------   - cloudera cloudera          0 2019-07-25 20:43 /user/cloudera/.Trash/Current/user
+drwx------   - cloudera cloudera          0 2019-09-17 00:53 /user/cloudera/.Trash/Current/user/cloudera
+-rw-r--r--   3 cloudera cloudera          0 2019-07-23 00:24 /user/cloudera/.Trash/Current/user/cloudera/f1
+drwx------   - cloudera cloudera          0 2019-09-18 00:01 /user/cloudera/.Trash/Current/user/cloudera/wordcount
+drwx------   - cloudera cloudera          0 2019-09-17 00:53 /user/cloudera/.Trash/Current/user/cloudera/wordcount/output
+-rw-r--r--   3 cloudera cloudera          0 2016-07-15 02:33 /user/cloudera/.Trash/Current/user/cloudera/wordcount/output/_SUCCESS
+drwxr-xr-x   - cloudera cloudera          0 2016-07-15 02:32 /user/cloudera/.Trash/Current/user/cloudera/wordcount/output/_logs
+drwxr-xr-x   - cloudera cloudera          0 2016-07-15 02:33 /user/cloudera/.Trash/Current/user/cloudera/wordcount/output/_logs/history
+-rw-r--r--   3 cloudera cloudera      25594 2016-07-15 02:33 /user/cloudera/.Trash/Current/user/cloudera/wordcount/output/_logs/history/job_201607150148_0001_1468575167787_cloudera_word+count
+-rw-r--r--   3 cloudera cloudera      75328 2016-07-15 02:32 /user/cloudera/.Trash/Current/user/cloudera/wordcount/output/_logs/history/job_201607150148_0001_conf.xml
+-rw-r--r--   3 cloudera cloudera         64 2016-07-15 02:33 /user/cloudera/.Trash/Current/user/cloudera/wordcount/output/part-r-00000
+drwxr-xr-x   - cloudera cloudera          0 2019-09-17 00:53 /user/cloudera/.Trash/Current/user/cloudera/wordcount/output1568707300521
+drwxr-xr-x   - cloudera cloudera          0 2019-09-17 01:27 /user/cloudera/.Trash/Current/user/cloudera/wordcount/output1568709165831
+-rw-r--r--   3 cloudera cloudera          0 2019-09-17 01:27 /user/cloudera/.Trash/Current/user/cloudera/wordcount/output1568709165831/_SUCCESS
+drwxr-xr-x   - cloudera cloudera          0 2019-09-17 01:27 /user/cloudera/.Trash/Current/user/cloudera/wordcount/output1568709165831/_logs
+drwxr-xr-x   - cloudera cloudera          0 2019-09-17 01:27 /user/cloudera/.Trash/Current/user/cloudera/wordcount/output1568709165831/_logs/history
+-rw-r--r--   3 cloudera cloudera      25594 2019-09-17 01:27 /user/cloudera/.Trash/Current/user/cloudera/wordcount/output1568709165831/_logs/history/job_201909170046_0001_1568708825452_cloudera_word+count
+-rw-r--r--   3 cloudera cloudera      75328 2019-09-17 01:27 /user/cloudera/.Trash/Current/user/cloudera/wordcount/output1568709165831/_logs/history/job_201909170046_0001_conf.xml
+-rw-r--r--   3 cloudera cloudera         64 2019-09-17 01:27 /user/cloudera/.Trash/Current/user/cloudera/wordcount/output1568709165831/part-r-00000
+drwxr-xr-x   - cloudera cloudera          0 2019-09-17 01:55 /user/cloudera/.Trash/Current/user/cloudera/wordcount/output1568790064099
+-rw-r--r--   3 cloudera cloudera          0 2019-09-17 01:55 /user/cloudera/.Trash/Current/user/cloudera/wordcount/output1568790064099/_SUCCESS
+drwxr-xr-x   - cloudera cloudera          0 2019-09-17 01:55 /user/cloudera/.Trash/Current/user/cloudera/wordcount/output1568790064099/_logs
+drwxr-xr-x   - cloudera cloudera          0 2019-09-17 01:55 /user/cloudera/.Trash/Current/user/cloudera/wordcount/output1568790064099/_logs/history
+-rw-r--r--   3 cloudera cloudera      25591 2019-09-17 01:55 /user/cloudera/.Trash/Current/user/cloudera/wordcount/output1568790064099/_logs/history/job_201909170046_0002_1568710514650_cloudera_word+count
+-rw-r--r--   3 cloudera cloudera      75328 2019-09-17 01:55 /user/cloudera/.Trash/Current/user/cloudera/wordcount/output1568790064099/_logs/history/job_201909170046_0002_conf.xml
+-rw-r--r--   3 cloudera cloudera         64 2019-09-17 01:55 /user/cloudera/.Trash/Current/user/cloudera/wordcount/output1568790064099/part-r-00000
+drwx------   - cloudera cloudera          0 2019-09-25 01:37 /user/cloudera/.staging
+drwxr-xr-x   - cloudera cloudera          0 2020-11-25 02:19 /user/cloudera/Biadmin
+drwxr-xr-x   - cloudera cloudera          0 2015-08-08 02:00 /user/cloudera/Input
+drwxr-xr-x   - cloudera cloudera          0 2015-08-08 02:00 /user/cloudera/Input/MapReduce
+-rw-r--r--   3 cloudera cloudera        102 2015-08-08 02:00 /user/cloudera/Input/MapReduce/WorldCupTeams
+drwxr-xr-x   - cloudera cloudera          0 2019-09-24 02:09 /user/cloudera/Matrix
+-rw-r--r--   3 cloudera cloudera         33 2019-09-24 02:09 /user/cloudera/Matrix/M
+-rw-r--r--   3 cloudera cloudera         33 2019-09-24 02:09 /user/cloudera/Matrix/N
+drwxr-xr-x   - cloudera cloudera          0 2015-08-08 02:04 /user/cloudera/OutPut
+drwxr-xr-x   - cloudera cloudera          0 2015-08-08 02:02 /user/cloudera/OutPut/_logs
+drwxr-xr-x   - cloudera cloudera          0 2015-08-08 02:04 /user/cloudera/OutPut/_logs/history
+-rw-r--r--   3 cloudera cloudera      13953 2015-08-08 02:04 /user/cloudera/OutPut/_logs/history/job_201508080035_0001_1439024578001_cloudera_WorldCupSeries
+-rw-r--r--   3 cloudera cloudera      75332 2015-08-08 02:03 /user/cloudera/OutPut/_logs/history/job_201508080035_0001_conf.xml
+drwxr-xr-x   - cloudera cloudera          0 2015-08-08 02:11 /user/cloudera/OutPut1
+-rw-r--r--   3 cloudera cloudera          0 2015-08-08 02:11 /user/cloudera/OutPut1/_SUCCESS
+drwxr-xr-x   - cloudera cloudera          0 2015-08-08 02:10 /user/cloudera/OutPut1/_logs
+drwxr-xr-x   - cloudera cloudera          0 2015-08-08 02:11 /user/cloudera/OutPut1/_logs/history
+-rw-r--r--   3 cloudera cloudera      18587 2015-08-08 02:11 /user/cloudera/OutPut1/_logs/history/job_201508080035_0002_1439025029522_cloudera_WorldCupSeries
+-rw-r--r--   3 cloudera cloudera      75575 2015-08-08 02:10 /user/cloudera/OutPut1/_logs/history/job_201508080035_0002_conf.xml
+-rw-r--r--   3 cloudera cloudera         55 2015-08-08 02:11 /user/cloudera/OutPut1/part-r-00000
+-rw-r--r--   3 cloudera cloudera          4 2019-11-18 00:44 /user/cloudera/file1
+drwxr-xr-x   - cloudera cloudera          0 2017-11-30 21:21 /user/cloudera/file3.txt
+drwxr-xr-x   - cloudera cloudera          0 2020-11-24 22:10 /user/cloudera/input
+drwxr-xr-x   - cloudera cloudera          0 2019-11-18 00:54 /user/cloudera/kavya
+-rw-r--r--   3 cloudera cloudera          6 2019-11-18 00:46 /user/cloudera/kavya/sample.txt
+drwxr-xr-x   - cloudera cloudera          0 2020-11-24 21:16 /user/cloudera/myTestDir
+drwxr-xr-x   - cloudera cloudera          0 2020-11-25 02:15 /user/cloudera/myTestDirc
+-rw-r--r--   3 cloudera cloudera          0 2017-11-30 21:26 /user/cloudera/newfile.txt
+drwxr-xr-x   - cloudera cloudera          0 2019-09-24 01:39 /user/cloudera/operation
+-rw-r--r--   3 cloudera cloudera       1464 2019-09-24 01:39 /user/cloudera/operation/MatrixMultiply.java
+-rw-r--r--   3 cloudera cloudera       1752 2019-09-24 01:31 /user/cloudera/operation/Reduce.java
+-rw-r--r--   3 cloudera cloudera       1924 2019-09-24 01:38 /user/cloudera/operation/map.java
+drwxr-xr-x   - cloudera cloudera          0 2020-11-24 22:49 /user/cloudera/output
+drwxr-xr-x   - cloudera cloudera          0 2019-09-25 01:37 /user/cloudera/result
+-rw-r--r--   3 cloudera cloudera          0 2019-09-25 01:37 /user/cloudera/result/_SUCCESS
+drwxr-xr-x   - cloudera cloudera          0 2019-09-25 01:37 /user/cloudera/result/_logs
+drwxr-xr-x   - cloudera cloudera          0 2019-09-25 01:37 /user/cloudera/result/_logs/history
+-rw-r--r--   3 cloudera cloudera      22182 2019-09-25 01:37 /user/cloudera/result/_logs/history/job_201909250039_0001_1569400637671_cloudera_MatrixMultiply
+-rw-r--r--   3 cloudera cloudera      75967 2019-09-25 01:37 /user/cloudera/result/_logs/history/job_201909250039_0001_conf.xml
+-rw-r--r--   3 cloudera cloudera         36 2019-09-25 01:37 /user/cloudera/result/part-r-00000
+-rw-r--r--   3 cloudera cloudera         98 2016-07-15 03:20 /user/cloudera/sample.java
+-rw-r--r--   3 cloudera cloudera          6 2019-11-18 00:45 /user/cloudera/sample.txt
+drwxrwxrwx   - cloudera cloudera          0 2017-12-14 20:40 /user/cloudera/sravanthi
+drwxr-xr-x   - cloudera cloudera          0 2017-12-14 20:38 /user/cloudera/sravanthi/Google
+-rw-------   3 root     cloudera         14 2016-06-24 02:46 /user/cloudera/sravanthi/sample3.txt
+drwxr-xr-x   - cloudera cloudera          0 2019-11-18 00:54 /user/cloudera/sri
+-rw-r--r--   3 cloudera cloudera          4 2019-11-18 00:54 /user/cloudera/sri/file2
+-rw-r--r--   3 cloudera cloudera          6 2019-11-18 00:47 /user/cloudera/sri/sample.txt
+drwxr-xr-x   - cloudera cloudera          0 2019-09-11 20:57 /user/cloudera/uday
+drwxr-xr-x   - cloudera cloudera          0 2021-09-05 22:38 /user/cloudera/user
+drwxr-xr-x   - cloudera cloudera          0 2021-09-05 22:38 /user/cloudera/user/cloudera
+drwxr-xr-x   - cloudera cloudera          0 2021-09-05 22:38 /user/cloudera/user/cloudera/denzyrel
+drwxr-xr-x   - cloudera cloudera          0 2019-09-18 00:02 /user/cloudera/wordcount
+drwxr-xr-x   - cloudera cloudera          0 2016-07-15 02:19 /user/cloudera/wordcount/input
+-rw-r--r--   3 cloudera cloudera         10 2016-07-15 02:19 /user/cloudera/wordcount/input/file0
+-rw-r--r--   3 cloudera cloudera         26 2016-07-15 02:19 /user/cloudera/wordcount/input/file1
+-rw-r--r--   3 cloudera cloudera         27 2016-07-15 02:19 /user/cloudera/wordcount/input/file2
+drwxr-xr-x   - cloudera cloudera          0 2019-09-18 00:03 /user/cloudera/wordcount/output
+-rw-r--r--   3 cloudera cloudera          0 2019-09-18 00:03 /user/cloudera/wordcount/output/_SUCCESS
+drwxr-xr-x   - cloudera cloudera          0 2019-09-18 00:02 /user/cloudera/wordcount/output/_logs
+drwxr-xr-x   - cloudera cloudera          0 2019-09-18 00:03 /user/cloudera/wordcount/output/_logs/history
+-rw-r--r--   3 cloudera cloudera      25594 2019-09-18 00:03 /user/cloudera/wordcount/output/_logs/history/job_201909172336_0001_1568790158941_cloudera_word+count
+-rw-r--r--   3 cloudera cloudera      75328 2019-09-18 00:02 /user/cloudera/wordcount/output/_logs/history/job_201909172336_0001_conf.xml
+-rw-r--r--   3 cloudera cloudera         64 2019-09-18 00:03 /user/cloudera/wordcount/output/part-r-00000
+drwxr-xr-x   - cloudera cloudera          0 2019-11-17 21:31 /user/cloudera/yv
+drwxr-xr-x   - mapred   yarn              0 2013-10-07 08:18 /user/history
+drwxrwxrwx   - hive     hive              0 2013-10-07 08:20 /user/hive
+drwxrwxrwt   - hive     hive              0 2016-07-15 03:25 /user/hive/warehouse
+drwxrwxrwt   - cloudera hive              0 2016-07-15 03:26 /user/hive/warehouse/emp
+-rw-rw-rw-   3 cloudera cloudera         41 2016-07-15 03:20 /user/hive/warehouse/emp/sample.txt
+drwxrwxrwt   - cloudera hive              0 2016-07-15 03:22 /user/hive/warehouse/userdb.db
+drwxrwxr-x   - oozie    oozie             0 2013-10-07 08:19 /user/oozie
+drwxr-xr-x   - oozie    oozie             0 2013-10-07 08:19 /user/oozie/share
+drwxr-xr-x   - oozie    oozie             0 2013-10-07 08:19 /user/oozie/share/lib
+drwxr-xr-x   - oozie    oozie             0 2013-10-07 08:19 /user/oozie/share/lib/distcp
+-rw-r--r--   3 oozie    oozie          7458 2013-10-07 08:19 /user/oozie/share/lib/distcp/hadoop-ant-2.0.0-mr1-cdh4.4.0.pom
+-rw-r--r--   3 oozie    oozie        175156 2013-10-07 08:19 /user/oozie/share/lib/distcp/hadoop-tools-2.0.0-mr1-cdh4.4.0.jar
+-rw-r--r--   3 oozie    oozie          2835 2013-10-07 08:19 /user/oozie/share/lib/distcp/oozie-sharelib-distcp-3.3.2-cdh4.4.0.jar
+drwxr-xr-x   - oozie    oozie             0 2013-10-07 08:19 /user/oozie/share/lib/hive
+-rw-r--r--   3 oozie    oozie         16993 2013-10-07 08:19 /user/oozie/share/lib/hive/JavaEWAH-0.3.2.jar
+-rw-r--r--   3 oozie    oozie        236660 2013-10-07 08:19 /user/oozie/share/lib/hive/ST4-4.0.4.jar
+-rw-r--r--   3 oozie    oozie        445288 2013-10-07 08:19 /user/oozie/share/lib/hive/antlr-2.7.7.jar
+-rw-r--r--   3 oozie    oozie       1112191 2013-10-07 08:19 /user/oozie/share/lib/hive/antlr-3.4.jar
+-rw-r--r--   3 oozie    oozie        164368 2013-10-07 08:19 /user/oozie/share/lib/hive/antlr-runtime-3.4.jar
+-rw-r--r--   3 oozie    oozie        266688 2013-10-07 08:19 /user/oozie/share/lib/hive/avro-ipc-1.7.4-tests.jar
+-rw-r--r--   3 oozie    oozie        187840 2013-10-07 08:19 /user/oozie/share/lib/hive/avro-ipc-1.7.4.jar
+-rw-r--r--   3 oozie    oozie        166584 2013-10-07 08:19 /user/oozie/share/lib/hive/avro-mapred-1.7.4-hadoop2.jar
+-rw-r--r--   3 oozie    oozie        188671 2013-10-07 08:19 /user/oozie/share/lib/hive/commons-beanutils-1.7.0.jar
+-rw-r--r--   3 oozie    oozie        206035 2013-10-07 08:19 /user/oozie/share/lib/hive/commons-beanutils-core-1.8.0.jar
+-rw-r--r--   3 oozie    oozie        575389 2013-10-07 08:19 /user/oozie/share/lib/hive/commons-collections-3.2.1.jar
+-rw-r--r--   3 oozie    oozie        241367 2013-10-07 08:19 /user/oozie/share/lib/hive/commons-compress-1.4.1.jar
+-rw-r--r--   3 oozie    oozie        298829 2013-10-07 08:19 /user/oozie/share/lib/hive/commons-configuration-1.6.jar
+-rw-r--r--   3 oozie    oozie        160519 2013-10-07 08:19 /user/oozie/share/lib/hive/commons-dbcp-1.4.jar
+-rw-r--r--   3 oozie    oozie        143602 2013-10-07 08:19 /user/oozie/share/lib/hive/commons-digester-1.8.jar
+-rw-r--r--   3 oozie    oozie         96221 2013-10-07 08:19 /user/oozie/share/lib/hive/commons-pool-1.5.4.jar
+-rw-r--r--   3 oozie    oozie        337012 2013-10-07 08:19 /user/oozie/share/lib/hive/datanucleus-api-jdo-3.2.1.jar
+-rw-r--r--   3 oozie    oozie         16880 2013-10-07 08:19 /user/oozie/share/lib/hive/datanucleus-connectionpool-2.0.3.jar
+-rw-r--r--   3 oozie    oozie       1801810 2013-10-07 08:19 /user/oozie/share/lib/hive/datanucleus-core-3.2.2.jar
+-rw-r--r--   3 oozie    oozie        188159 2013-10-07 08:19 /user/oozie/share/lib/hive/datanucleus-enhancer-2.0.3.jar
+-rw-r--r--   3 oozie    oozie       1769726 2013-10-07 08:19 /user/oozie/share/lib/hive/datanucleus-rdbms-3.2.1.jar
+-rw-r--r--   3 oozie    oozie       2623509 2013-10-07 08:19 /user/oozie/share/lib/hive/derby-10.6.1.0.jar
+-rw-r--r--   3 oozie    oozie       1648200 2013-10-07 08:19 /user/oozie/share/lib/hive/guava-11.0.2.jar
+-rw-r--r--   3 oozie    oozie         42940 2013-10-07 08:19 /user/oozie/share/lib/hive/haivvreo-1.0.7-cdh-4.jar
+-rw-r--r--   3 oozie    oozie          3921 2013-10-07 08:19 /user/oozie/share/lib/hive/hive-builtins-0.10.0-cdh4.4.0.jar
+-rw-r--r--   3 oozie    oozie         32726 2013-10-07 08:19 /user/oozie/share/lib/hive/hive-cli-0.10.0-cdh4.4.0.jar
+-rw-r--r--   3 oozie    oozie         91179 2013-10-07 08:19 /user/oozie/share/lib/hive/hive-common-0.10.0-cdh4.4.0.jar
+-rw-r--r--   3 oozie    oozie        112793 2013-10-07 08:19 /user/oozie/share/lib/hive/hive-contrib-0.10.0-cdh4.4.0.jar
+-rw-r--r--   3 oozie    oozie       4650065 2013-10-07 08:19 /user/oozie/share/lib/hive/hive-exec-0.10.0-cdh4.4.0.jar
+-rw-r--r--   3 oozie    oozie       3083819 2013-10-07 08:19 /user/oozie/share/lib/hive/hive-metastore-0.10.0-cdh4.4.0.jar
+-rw-r--r--   3 oozie    oozie        657064 2013-10-07 08:19 /user/oozie/share/lib/hive/hive-serde-0.10.0-cdh4.4.0.jar
+-rw-r--r--   3 oozie    oozie       1721733 2013-10-07 08:19 /user/oozie/share/lib/hive/hive-service-0.10.0-cdh4.4.0.jar
+-rw-r--r--   3 oozie    oozie         99417 2013-10-07 08:19 /user/oozie/share/lib/hive/hive-shims-0.10.0-cdh4.4.0.jar
+-rw-r--r--   3 oozie    oozie        352585 2013-10-07 08:19 /user/oozie/share/lib/hive/httpclient-4.1.3.jar
+-rw-r--r--   3 oozie    oozie        181201 2013-10-07 08:19 /user/oozie/share/lib/hive/httpcore-4.1.3.jar
+-rw-r--r--   3 oozie    oozie        227500 2013-10-07 08:19 /user/oozie/share/lib/hive/jackson-core-asl-1.8.8.jar
+-rw-r--r--   3 oozie    oozie        668564 2013-10-07 08:19 /user/oozie/share/lib/hive/jackson-mapper-asl-1.8.8.jar
+-rw-r--r--   3 oozie    oozie        198552 2013-10-07 08:19 /user/oozie/share/lib/hive/jdo2-api-2.3-ec.jar
+-rw-r--r--   3 oozie    oozie        177417 2013-10-07 08:19 /user/oozie/share/lib/hive/jetty-util-6.1.26.cloudera.2.jar
+-rw-r--r--   3 oozie    oozie         87325 2013-10-07 08:19 /user/oozie/share/lib/hive/jline-0.9.94.jar
+-rw-r--r--   3 oozie    oozie         45944 2013-10-07 08:19 /user/oozie/share/lib/hive/json-20090211.jar
+-rw-r--r--   3 oozie    oozie         33015 2013-10-07 08:19 /user/oozie/share/lib/hive/jsr305-1.3.9.jar
+-rw-r--r--   3 oozie    oozie         15071 2013-10-07 08:19 /user/oozie/share/lib/hive/jta-1.1.jar
+-rw-r--r--   3 oozie    oozie        275186 2013-10-07 08:19 /user/oozie/share/lib/hive/libfb303-0.9.0.jar
+-rw-r--r--   3 oozie    oozie        347531 2013-10-07 08:19 /user/oozie/share/lib/hive/libthrift-0.9.0.jar
+-rw-r--r--   3 oozie    oozie        957162 2013-10-07 08:19 /user/oozie/share/lib/hive/netty-3.4.0.Final.jar
+-rw-r--r--   3 oozie    oozie          9864 2013-10-07 08:19 /user/oozie/share/lib/hive/oozie-sharelib-hive-3.3.2-cdh4.4.0.jar
+-rw-r--r--   3 oozie    oozie        148627 2013-10-07 08:19 /user/oozie/share/lib/hive/stringtemplate-3.2.1.jar
+-rw-r--r--   3 oozie    oozie         94672 2013-10-07 08:19 /user/oozie/share/lib/hive/xz-1.0.jar
+drwxr-xr-x   - oozie    oozie             0 2013-10-07 08:19 /user/oozie/share/lib/hive2
+-rw-r--r--   3 oozie    oozie        337012 2013-10-07 08:19 /user/oozie/share/lib/hive2/datanucleus-api-jdo-3.2.1.jar
+-rw-r--r--   3 oozie    oozie         93994 2013-10-07 08:19 /user/oozie/share/lib/hive2/hive-beeline-0.10.0-cdh4.4.0.jar
+-rw-r--r--   3 oozie    oozie        123517 2013-10-07 08:19 /user/oozie/share/lib/hive2/hive-jdbc-0.10.0-cdh4.4.0.jar
+-rw-r--r--   3 oozie    oozie       3083819 2013-10-07 08:19 /user/oozie/share/lib/hive2/hive-metastore-0.10.0-cdh4.4.0.jar
+-rw-r--r--   3 oozie    oozie       1721733 2013-10-07 08:19 /user/oozie/share/lib/hive2/hive-service-0.10.0-cdh4.4.0.jar
+-rw-r--r--   3 oozie    oozie         99417 2013-10-07 08:19 /user/oozie/share/lib/hive2/hive-shims-0.10.0-cdh4.4.0.jar
+-rw-r--r--   3 oozie    oozie        275186 2013-10-07 08:19 /user/oozie/share/lib/hive2/libfb303-0.9.0.jar
+-rw-r--r--   3 oozie    oozie        347531 2013-10-07 08:19 /user/oozie/share/lib/hive2/libthrift-0.9.0.jar
+-rw-r--r--   3 oozie    oozie         10010 2013-10-07 08:19 /user/oozie/share/lib/hive2/oozie-sharelib-hive2-3.3.2-cdh4.4.0.jar
+drwxr-xr-x   - oozie    oozie             0 2013-10-07 08:19 /user/oozie/share/lib/mapreduce-streaming
+-rw-r--r--   3 oozie    oozie        102439 2013-10-07 08:19 /user/oozie/share/lib/mapreduce-streaming/hadoop-streaming-2.0.0-cdh4.4.0.jar
+-rw-r--r--   3 oozie    oozie          5668 2013-10-07 08:19 /user/oozie/share/lib/mapreduce-streaming/oozie-sharelib-streaming-3.3.2-cdh4.4.0.jar
+drwxr-xr-x   - oozie    oozie             0 2013-10-07 08:19 /user/oozie/share/lib/oozie
+-rw-r--r--   3 oozie    oozie         16046 2013-10-07 08:19 /user/oozie/share/lib/oozie/json-simple-1.1.jar
+-rw-r--r--   3 oozie    oozie          2732 2013-10-07 08:19 /user/oozie/share/lib/oozie/oozie-sharelib-oozie-3.3.2-cdh4.4.0.jar
+drwxr-xr-x   - oozie    oozie             0 2013-10-07 08:19 /user/oozie/share/lib/pig
+-rw-r--r--   3 oozie    oozie        445288 2013-10-07 08:19 /user/oozie/share/lib/pig/antlr-2.7.7.jar
+-rw-r--r--   3 oozie    oozie        164368 2013-10-07 08:19 /user/oozie/share/lib/pig/antlr-runtime-3.4.jar
+-rw-r--r--   3 oozie    oozie        176285 2013-10-07 08:19 /user/oozie/share/lib/pig/automaton-1.11-8.jar
+-rw-r--r--   3 oozie    oozie       1648200 2013-10-07 08:19 /user/oozie/share/lib/pig/guava-11.0.2.jar
+-rw-r--r--   3 oozie    oozie        643727 2013-10-07 08:19 /user/oozie/share/lib/pig/hsqldb-1.8.0.7.jar
+-rw-r--r--   3 oozie    oozie        113796 2013-10-07 08:19 /user/oozie/share/lib/pig/jansi-1.9.jar
+-rw-r--r--   3 oozie    oozie         87325 2013-10-07 08:19 /user/oozie/share/lib/pig/jline-0.9.94.jar
+-rw-r--r--   3 oozie    oozie        534827 2013-10-07 08:19 /user/oozie/share/lib/pig/joda-time-1.6.jar
+-rw-r--r--   3 oozie    oozie        185746 2013-10-07 08:19 /user/oozie/share/lib/pig/jsch-0.1.42.jar
+-rw-r--r--   3 oozie    oozie         33015 2013-10-07 08:19 /user/oozie/share/lib/pig/jsr305-1.3.9.jar
+-rw-r--r--   3 oozie    oozie      14340135 2013-10-07 08:19 /user/oozie/share/lib/pig/jython-standalone-2.5.3.jar
+-rw-r--r--   3 oozie    oozie         19423 2013-10-07 08:19 /user/oozie/share/lib/pig/oozie-sharelib-pig-3.3.2-cdh4.4.0.jar
+-rw-r--r--   3 oozie    oozie       3548778 2013-10-07 08:19 /user/oozie/share/lib/pig/pig-0.11.0-cdh4.4.0.jar
+-rw-r--r--   3 oozie    oozie        148627 2013-10-07 08:19 /user/oozie/share/lib/pig/stringtemplate-3.2.1.jar
+-rw-r--r--   3 oozie    oozie          1364 2013-10-07 08:19 /user/oozie/share/lib/sharelib.properties
+drwxr-xr-x   - oozie    oozie             0 2013-10-07 08:19 /user/oozie/share/lib/sqoop
+-rw-r--r--   3 oozie    oozie         16993 2013-10-07 08:19 /user/oozie/share/lib/sqoop/JavaEWAH-0.3.2.jar
+-rw-r--r--   3 oozie    oozie        236660 2013-10-07 08:19 /user/oozie/share/lib/sqoop/ST4-4.0.4.jar
+-rw-r--r--   3 oozie    oozie        445288 2013-10-07 08:19 /user/oozie/share/lib/sqoop/antlr-2.7.7.jar
+-rw-r--r--   3 oozie    oozie       1112191 2013-10-07 08:19 /user/oozie/share/lib/sqoop/antlr-3.4.jar
+-rw-r--r--   3 oozie    oozie        164368 2013-10-07 08:19 /user/oozie/share/lib/sqoop/antlr-runtime-3.4.jar
+-rw-r--r--   3 oozie    oozie         43398 2013-10-07 08:19 /user/oozie/share/lib/sqoop/asm-3.2.jar
+-rw-r--r--   3 oozie    oozie        266688 2013-10-07 08:19 /user/oozie/share/lib/sqoop/avro-ipc-1.7.4-tests.jar
+-rw-r--r--   3 oozie    oozie        187840 2013-10-07 08:19 /user/oozie/share/lib/sqoop/avro-ipc-1.7.4.jar
+-rw-r--r--   3 oozie    oozie        166584 2013-10-07 08:19 /user/oozie/share/lib/sqoop/avro-mapred-1.7.4-hadoop2.jar
+-rw-r--r--   3 oozie    oozie        188671 2013-10-07 08:19 /user/oozie/share/lib/sqoop/commons-beanutils-1.7.0.jar
+-rw-r--r--   3 oozie    oozie        206035 2013-10-07 08:19 /user/oozie/share/lib/sqoop/commons-beanutils-core-1.8.0.jar
+-rw-r--r--   3 oozie    oozie        241367 2013-10-07 08:19 /user/oozie/share/lib/sqoop/commons-compress-1.4.1.jar
+-rw-r--r--   3 oozie    oozie        298829 2013-10-07 08:19 /user/oozie/share/lib/sqoop/commons-configuration-1.6.jar
+-rw-r--r--   3 oozie    oozie        160519 2013-10-07 08:19 /user/oozie/share/lib/sqoop/commons-dbcp-1.4.jar
+-rw-r--r--   3 oozie    oozie        143602 2013-10-07 08:19 /user/oozie/share/lib/sqoop/commons-digester-1.8.jar
+-rw-r--r--   3 oozie    oozie        163151 2013-10-07 08:19 /user/oozie/share/lib/sqoop/commons-io-2.1.jar
+-rw-r--r--   3 oozie    oozie         96221 2013-10-07 08:19 /user/oozie/share/lib/sqoop/commons-pool-1.5.4.jar
+-rw-r--r--   3 oozie    oozie        337012 2013-10-07 08:19 /user/oozie/share/lib/sqoop/datanucleus-api-jdo-3.2.1.jar
+-rw-r--r--   3 oozie    oozie         16880 2013-10-07 08:19 /user/oozie/share/lib/sqoop/datanucleus-connectionpool-2.0.3.jar
+-rw-r--r--   3 oozie    oozie       1801810 2013-10-07 08:19 /user/oozie/share/lib/sqoop/datanucleus-core-3.2.2.jar
+-rw-r--r--   3 oozie    oozie        188159 2013-10-07 08:19 /user/oozie/share/lib/sqoop/datanucleus-enhancer-2.0.3.jar
+-rw-r--r--   3 oozie    oozie       1769726 2013-10-07 08:19 /user/oozie/share/lib/sqoop/datanucleus-rdbms-3.2.1.jar
+-rw-r--r--   3 oozie    oozie       1648200 2013-10-07 08:19 /user/oozie/share/lib/sqoop/guava-11.0.2.jar
+-rw-r--r--   3 oozie    oozie         42940 2013-10-07 08:19 /user/oozie/share/lib/sqoop/haivvreo-1.0.7-cdh-4.jar
+-rw-r--r--   3 oozie    oozie       5210338 2013-10-07 08:19 /user/oozie/share/lib/sqoop/hbase-0.94.6-cdh4.4.0.jar
+-rw-r--r--   3 oozie    oozie        238566 2013-10-07 08:19 /user/oozie/share/lib/sqoop/hcatalog-core-0.5.0-cdh4.4.0.jar
+-rw-r--r--   3 oozie    oozie         95975 2013-10-07 08:19 /user/oozie/share/lib/sqoop/high-scale-lib-1.1.1.jar
+-rw-r--r--   3 oozie    oozie          3921 2013-10-07 08:19 /user/oozie/share/lib/sqoop/hive-builtins-0.10.0-cdh4.4.0.jar
+-rw-r--r--   3 oozie    oozie         32726 2013-10-07 08:19 /user/oozie/share/lib/sqoop/hive-cli-0.10.0-cdh4.4.0.jar
+-rw-r--r--   3 oozie    oozie         91179 2013-10-07 08:19 /user/oozie/share/lib/sqoop/hive-common-0.10.0-cdh4.4.0.jar
+-rw-r--r--   3 oozie    oozie        112793 2013-10-07 08:19 /user/oozie/share/lib/sqoop/hive-contrib-0.10.0-cdh4.4.0.jar
+-rw-r--r--   3 oozie    oozie       4650065 2013-10-07 08:19 /user/oozie/share/lib/sqoop/hive-exec-0.10.0-cdh4.4.0.jar
+-rw-r--r--   3 oozie    oozie       3083819 2013-10-07 08:19 /user/oozie/share/lib/sqoop/hive-metastore-0.10.0-cdh4.4.0.jar
+-rw-r--r--   3 oozie    oozie        657064 2013-10-07 08:19 /user/oozie/share/lib/sqoop/hive-serde-0.10.0-cdh4.4.0.jar
+-rw-r--r--   3 oozie    oozie       1721733 2013-10-07 08:19 /user/oozie/share/lib/sqoop/hive-service-0.10.0-cdh4.4.0.jar
+-rw-r--r--   3 oozie    oozie         99417 2013-10-07 08:19 /user/oozie/share/lib/sqoop/hive-shims-0.10.0-cdh4.4.0.jar
+-rw-r--r--   3 oozie    oozie        643727 2013-10-07 08:19 /user/oozie/share/lib/sqoop/hsqldb-1.8.0.7.jar
+-rw-r--r--   3 oozie    oozie        352585 2013-10-07 08:19 /user/oozie/share/lib/sqoop/httpclient-4.1.3.jar
+-rw-r--r--   3 oozie    oozie        181201 2013-10-07 08:19 /user/oozie/share/lib/sqoop/httpcore-4.1.3.jar
+-rw-r--r--   3 oozie    oozie        198552 2013-10-07 08:19 /user/oozie/share/lib/sqoop/jdo2-api-2.3-ec.jar
+-rw-r--r--   3 oozie    oozie         87325 2013-10-07 08:19 /user/oozie/share/lib/sqoop/jline-0.9.94.jar
+-rw-r--r--   3 oozie    oozie         45944 2013-10-07 08:19 /user/oozie/share/lib/sqoop/json-20090211.jar
+-rw-r--r--   3 oozie    oozie         33015 2013-10-07 08:19 /user/oozie/share/lib/sqoop/jsr305-1.3.9.jar
+-rw-r--r--   3 oozie    oozie         15071 2013-10-07 08:19 /user/oozie/share/lib/sqoop/jta-1.1.jar
+-rw-r--r--   3 oozie    oozie        275186 2013-10-07 08:19 /user/oozie/share/lib/sqoop/libfb303-0.9.0.jar
+-rw-r--r--   3 oozie    oozie        347531 2013-10-07 08:19 /user/oozie/share/lib/sqoop/libthrift-0.9.0.jar
+-rw-r--r--   3 oozie    oozie         82445 2013-10-07 08:19 /user/oozie/share/lib/sqoop/metrics-core-2.1.2.jar
+-rw-r--r--   3 oozie    oozie        957162 2013-10-07 08:19 /user/oozie/share/lib/sqoop/netty-3.4.0.Final.jar
+-rw-r--r--   3 oozie    oozie          8151 2013-10-07 08:19 /user/oozie/share/lib/sqoop/oozie-sharelib-sqoop-3.3.2-cdh4.4.0.jar
+-rw-r--r--   3 oozie    oozie        755808 2013-10-07 08:19 /user/oozie/share/lib/sqoop/sqoop-1.4.3-cdh4.4.0.jar
+-rw-r--r--   3 oozie    oozie        148627 2013-10-07 08:19 /user/oozie/share/lib/sqoop/stringtemplate-3.2.1.jar
+-rw-r--r--   3 oozie    oozie         94672 2013-10-07 08:19 /user/oozie/share/lib/sqoop/xz-1.0.jar
+drwxrwxr-x   - sqoop2   sqoop             0 2013-10-07 08:20 /user/sqoop2
+[cloudera@localhost hadoop]$ hadoop fs  -put /home/biadmin/bootcamp/input/lab01_HadoopCore/HDFS/README
